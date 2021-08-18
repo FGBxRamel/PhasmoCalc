@@ -4,21 +4,50 @@
 using namespace std;
 using json = nlohmann::json;
 
+json setup_json(json ghosts, string json_path);
+void save(json ghosts, string json_path);
 
 int main()
 {
 	string json_path = "ghosts.json";
 	json ghosts;
-	ifstream ghost_file(json_path);
+	ifstream rghost_file(json_path);
 	
-	if (ghost_file)
+	if (rghost_file)
 	{
-		ghost_file >> ghosts;
-		ghost_file.close();
+		try
+		{
+			rghost_file >> ghosts;
+			rghost_file.close();
+		}
+		catch (nlohmann::detail::parse_error&)
+		{
+			ghosts = setup_json(ghosts, json_path);
+		}
 	}
 	else
 	{
-		ghosts = {
+		ghosts = setup_json(ghosts, json_path);
+	}
+
+	while (true)
+	{
+		for (json::iterator i = ghosts.begin(); i != ghosts.end(); ++i)
+		{
+			cout << i.key() << " : " << i.value() << endl;
+		}
+		string catched_ghost;
+		cout << "\n Welchen Geist hast du gefangen? : ";
+		cin >> catched_ghost;
+		ghosts[catched_ghost] = ghosts[catched_ghost] + 1;
+		save(ghosts, json_path);
+		system("cls");
+	}
+	return 0;
+}
+
+json setup_json(json ghosts, string json_path) {
+	ghosts = {
 			{"Spirit", 0},
 			{"Gespenst", 0},
 			{"Phantom", 0},
@@ -33,19 +62,15 @@ int main()
 			{"Oni", 0},
 			{"Yokai", 0},
 			{"Hantu", 0}
-		};
-		ofstream ghost_file(json_path);
-		ghost_file << ghosts.dump(4);
-		ghost_file.close();
-	}
-	while (true)
-	{
-		for (json::iterator i = ghosts.begin(); i != ghosts.end(); ++i)
-		{
-			cout << i.key() << " : " << i.value() << endl;
-		}
-		
-	}
-	return 1;
-}
+	};
+	ofstream wghost_file(json_path);
+	wghost_file << ghosts.dump(4);
+	wghost_file.close();
+	return ghosts;
+};
 
+void save(json ghosts, string json_path) {
+	ofstream wghost_file(json_path);
+	wghost_file << ghosts.dump(4);
+	wghost_file.close();
+};

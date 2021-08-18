@@ -1,2 +1,3 @@
 ﻿  PhasmoCalc.cpp
+F:\PhasmoCalc\PhasmoCalc\PhasmoCalc\PhasmoCalc.cpp(23,41): warning C4101: "e": Unreferenzierte lokale Variable
   PhasmoCalc.vcxproj -> F:\PhasmoCalc\PhasmoCalc\Debug\PhasmoCalc.exe
