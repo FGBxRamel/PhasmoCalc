@@ -33,6 +33,9 @@
 
 # VS
 PhasmoCalc/.vs/
+PhasmoCalc/Debug/
+PhasmoCalc/PhasmoCalc/Debug
+
 
 # Other Stuff
 *.json
