@@ -9,7 +9,7 @@ int main()
 {
 	string json_path = "ghosts.json";
 	json ghosts;
-	fstream ghost_file(json_path);
+	ifstream ghost_file(json_path);
 	
 	if (ghost_file)
 	{
@@ -34,12 +34,16 @@ int main()
 			{"Yokai", 0},
 			{"Hantu", 0}
 		};
-		//ofstream ghost_file(json_path);
-		ghost_file << ghosts;
+		ofstream ghost_file(json_path);
+		ghost_file << ghosts.dump(4);
 		ghost_file.close();
 	}
 	while (true)
 	{
+		for (json::iterator i = ghosts.begin(); i != ghosts.end(); ++i)
+		{
+			cout << i.key() << " : " << i.value() << endl;
+		}
 		
 	}
 	return 1;
