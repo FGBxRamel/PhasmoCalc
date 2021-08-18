@@ -12,7 +12,7 @@ int main()
 	string json_path = "ghosts.json";
 	json ghosts;
 	ifstream rghost_file(json_path);
-	
+
 	if (rghost_file)
 	{
 		try
@@ -37,11 +37,18 @@ int main()
 			cout << i.key() << " : " << i.value() << endl;
 		}
 		string catched_ghost;
-		cout << "\n Welchen Geist hast du gefangen? : ";
+		cout << "\nWelchen Geist hast du gefangen? : ";
 		cin >> catched_ghost;
-		ghosts[catched_ghost] = ghosts[catched_ghost] + 1;
-		save(ghosts, json_path);
-		system("cls");
+		if (!ghosts.contains(catched_ghost))
+		{
+			cout << "\nDieser Geist existiert nicht! Bitte achte auf Gross- und Kleinschreibung.\n";
+		}
+		else
+		{
+			ghosts[catched_ghost] = ghosts[catched_ghost] + 1;
+			save(ghosts, json_path);
+			system("cls");
+		}
 	}
 	return 0;
 }
