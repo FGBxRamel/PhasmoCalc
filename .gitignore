@@ -33,3 +33,6 @@
 
 # VS
 PhasmoCalc/.vs/
+
+# Other Stuff
+*.json
