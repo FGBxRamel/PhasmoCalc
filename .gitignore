@@ -34,7 +34,9 @@
 # VS
 PhasmoCalc/.vs/
 PhasmoCalc/Debug/
-PhasmoCalc/PhasmoCalc/Debug
+PhasmoCalc/PhasmoCalc/Debug/
+PhasmoCalc/x64/
+PhasmoCalc/PhasmoCalc/x64/
 
 
 # Other Stuff
